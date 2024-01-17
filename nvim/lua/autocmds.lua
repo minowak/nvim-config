@@ -2,14 +2,6 @@ local function augroup(name)
 	return vim.api.nvim_create_augroup("szakal_" .. name, { clear = true })
 end
 
--- Format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function(args)
-		vim.lsp.buf.format({ bufnr = args.buf })
-	end,
-})
-
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_yank"),
