@@ -1,8 +1,8 @@
 return {
   {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.5',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.5",
+    dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       {
         "<leader><leader>",
@@ -16,7 +16,7 @@ return {
         function()
           require("telescope.builtin").live_grep()
         end,
-        desc = "Find files"
+        desc = "Find files",
       },
       {
         "<leader>,",
@@ -34,7 +34,7 @@ return {
         end,
         desc = "Goto Symbol",
       },
-    }
+    },
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -120,19 +120,19 @@ return {
     end,
   },
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
         options = {
-          theme = 'tokyonight',
+          theme = "tokyonight",
           disabled_filetypes = {
             -- "neo-tree",
-            "alpha"
-          }
-        }
+            "alpha",
+          },
+        },
       })
-    end
+    end,
   },
   {
     "folke/which-key.nvim",
@@ -158,8 +158,8 @@ return {
         ["<leader>x"] = { name = "+diagnostics/quickfix" },
       },
       window = {
-        border = "single"
-      }
+        border = "single",
+      },
     },
     config = function(_, opts)
       local wk = require("which-key")
@@ -272,7 +272,8 @@ return {
         function()
           local bd = require("mini.bufremove").delete
           if vim.bo.modified then
-            local choice = vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
+            local choice =
+                vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
             if choice == 1 then -- Yes
               vim.cmd.write()
               bd(0)
@@ -342,5 +343,8 @@ return {
       { "<leader>st", "<cmd>TodoTelescope<cr>",                            desc = "Todo" },
       { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",    desc = "Todo/Fix/Fixme" },
     },
+  },
+  {
+    "kdheepak/lazygit.nvim"
   }
 }
