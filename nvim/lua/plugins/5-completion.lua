@@ -16,10 +16,25 @@ return {
         build = ":Codeium Auth",
         opts = {},
       },
+      {
+        "tzachar/cmp-tabnine",
+        build = {
+          ":CmpTabnineHub",
+        },
+        dependencies = "hrsh7th/nvim-cmp",
+        opts = {
+          max_lines = 1000,
+          max_num_results = 3,
+          sort = true,
+        },
+        config = function(_, opts)
+          require("cmp_tabnine.config"):setup(opts)
+        end,
+      },
     },
     config = function()
       local cmp = require("cmp")
-      local lspkind = require('lspkind')
+      local lspkind = require("lspkind")
       require("luasnip.loaders.from_vscode").lazy_load()
 
       cmp.setup({
@@ -50,7 +65,8 @@ return {
           end,
         }),
         sources = cmp.config.sources({
-          { name = "codeium", group_index = 1, priority = 100 },
+          { name = "codeium",     group_index = 1, priority = 100 },
+          { name = "cmp_tabnine", group_index = 1, priority = 100 },
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
@@ -60,9 +76,10 @@ return {
           format = lspkind.cmp_format({
             mode = "symbol_text",
             maxwidth = 50,
-            ellipsis_char = '...',
+            ellipsis_char = "...",
             symbol_map = {
               Codeium = "",
+              TabNine = "",
               Text = "󰉿",
               Method = "󰆧",
               Function = "󰊕",
@@ -88,9 +105,9 @@ return {
               Event = "",
               Operator = "󰆕",
               TypeParameter = "",
-            }
-          })
-        }
+            },
+          }),
+        },
       })
     end,
     -- opts = function(_, opts)
@@ -100,6 +117,21 @@ return {
     --     return require("tailwindcss-colorizer-cmp").formatter(entry, item)
     --   end
     -- end,
+  },
+  {
+    "tzachar/cmp-tabnine",
+    build = {
+      ":CmpTabnineHub",
+    },
+    dependencies = "hrsh7th/nvim-cmp",
+    opts = {
+      max_lines = 1000,
+      max_num_results = 3,
+      sort = true,
+    },
+    config = function(_, opts)
+      require("cmp_tabnine.config"):setup(opts)
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
