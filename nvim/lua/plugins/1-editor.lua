@@ -127,9 +127,10 @@ return {
         options = {
           theme = "tokyonight",
           disabled_filetypes = {
-            -- "neo-tree",
+            "neo-tree",
             "alpha",
           },
+          globalstatus = true,
         },
       })
     end,
@@ -346,5 +347,5 @@ return {
   },
   {
     "kdheepak/lazygit.nvim"
-  }
+  },
 }

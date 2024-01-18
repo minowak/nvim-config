@@ -1,9 +1,14 @@
 return {
   {
     "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup()
-    end,
+    opts = {
+      ensure_installed = {
+        "stylua",
+        -- rustywind for tailwindcss
+        "tailwindcss-language-server",
+        "rustywind",
+      },
+    },
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -23,6 +28,7 @@ return {
       })
       lspconfig.tsserver.setup({
         capabilities = capabilities,
+        -- on_attach = on_attach,
       })
       lspconfig.html.setup({
         capabilities = capabilities,
@@ -111,5 +117,21 @@ return {
   },
   {
     "onsails/lspkind.nvim"
+  },
+  {
+    "narutoxy/dim.lua",
+    event = "BufRead",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
+    config = true,
+  },
+  {
+    "glepnir/lspsaga.nvim",
+    event = "LspAttach",
+    config = true,
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+      -- Please make sure you install markdown and markdown_inline parser
+      { "nvim-treesitter/nvim-treesitter" },
+    },
   },
 }
