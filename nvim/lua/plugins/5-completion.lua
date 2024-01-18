@@ -11,10 +11,28 @@ return {
     dependencies = {
       { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
       {
-        "Exafunction/codeium.nvim",
+        "Exafunction/codeium.vim",
+        event = 'BufEnter',
         cmd = "Codeium",
         build = ":Codeium Auth",
-        opts = {},
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+          "hrsh7th/nvim-cmp",
+        },
+        config = function()
+          vim.keymap.set("i", "<Tab>", function()
+            return vim.fn["codeium#Accept"]()
+          end, { expr = true })
+          vim.keymap.set("i", "<C-j>", function()
+            return vim.fn["codeium#CycleCompletions"](1)
+          end, { expr = true })
+          vim.keymap.set("i", "<C-k>", function()
+            return vim.fn["codeium#CycleCompletions"](-1)
+          end, { expr = true })
+          vim.keymap.set("i", "<C-x>", function()
+            return vim.fn["codeium#Clear"]()
+          end, { expr = true })
+        end,
       },
       {
         "tzachar/cmp-tabnine",
