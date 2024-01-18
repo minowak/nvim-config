@@ -1,0 +1,30 @@
+{
+  "SVG Element": {
+    "prefix": "svg",
+    "body": [
+      "type Props = {",
+      "  className?: string;",
+      "}",
+      "",
+      "export const ${1:${TM_FILENAME/(.*)\\..*/$1/}}: React.FC<Props> = ({ className }) => {",
+      "  return (",
+      "    <>",
+      "    </>",
+      "  );",
+      "}"
+    ],
+    "description": "Create SVG Element"
+  },
+  "React component": {
+    "prefix": "component",
+    "body": [
+      "export const ${1:${TM_FILENAME/(.*)\\..*/$1/}}: React.FC = () => {",
+      "  return (",
+      "    <>",
+      "    </>",
+      "  );",
+      "}"
+    ],
+    "description": "Create React component"
+  }
+}

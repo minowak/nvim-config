@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "tsserver", "html" },
+        ensure_installed = { "lua_ls", "tsserver", "html", "jsonls", "tailwindcss" },
       })
     end,
   },
@@ -27,6 +27,31 @@ return {
       lspconfig.html.setup({
         capabilities = capabilities,
       })
+      lspconfig.tailwindcss.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.jsonls.setup({
+        capabilities = capabilities,
+      })
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+      vim.keymap.set("n", "ca", vim.lsp.buf.code_action, { desc = "Code action" })
+      vim.keymap.set("n", "<leader>cl", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
+      vim.keymap.set("n", "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end,
+        { desc = "Goto Definition" })
+      vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "References" })
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
+      vim.keymap.set("n", "<leader>cA",
+        function()
+          vim.lsp.buf.code_action({
+            context = {
+              only = {
+                "source",
+              },
+              diagnostics = {},
+            },
+          })
+        end, { desc = "Source Action" })
     end,
     opts = {
       servers = {
@@ -50,46 +75,6 @@ return {
 
           vim.list_extend(opts.filetypes, opts.filetypes_include or {})
         end,
-      },
-      keys = {
-        { "K",          vim.lsp.buf.hover,                                                                 desc = "Hover" },
-        { "gd",         vim.lsp.buf.definition,                                                            desc = "Go to definition" },
-        { "ca",         vim.lsp.buf.code_action,                                                           desc = "Code action" },
-        { "<leader>cl", "<cmd>LspInfo<cr>",                                                                desc = "Lsp Info" },
-        { "gd",         function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end, desc = "Goto Definition", has = "definition" },
-        { "gr",         "<cmd>Telescope lsp_references<cr>",                                               desc = "References" },
-        { "gD",         vim.lsp.buf.declaration,                                                           desc = "Goto Declaration" },
-        {
-          "gI",
-          function()
-            require("telescope.builtin").lsp_implementations({ reuse_win = true })
-          end,
-          desc = "Goto Implementation",
-        },
-        {
-          "gy",
-          function()
-            require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
-          end,
-          desc = "Goto T[y]pe Definition",
-        },
-        { "gK",    vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
-        { "<c-k>", vim.lsp.buf.signature_help, mode = "i",              desc = "Signature Help", has = "signatureHelp" },
-        {
-          "<leader>cA",
-          function()
-            vim.lsp.buf.code_action({
-              context = {
-                only = {
-                  "source",
-                },
-                diagnostics = {},
-              },
-            })
-          end,
-          desc = "Source Action",
-          has = "codeAction",
-        },
       },
     },
   },

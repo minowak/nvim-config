@@ -74,7 +74,7 @@ vim.g.markdown_recommended_style = 0
 local signs = {
   Error = "",
   Warn = "",
-  Hint = "󰌶",
+  Hint = "󰌶 ",
   Info = "",
 }
 
