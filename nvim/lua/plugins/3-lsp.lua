@@ -124,4 +124,7 @@ return {
       { "<leader>cf", vim.lsp.buf.format, desc = "Format" },
     },
   },
+  {
+    "onsails/lspkind.nvim"
+  },
 }
