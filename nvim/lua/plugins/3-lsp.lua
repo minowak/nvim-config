@@ -1,3 +1,8 @@
+local enabled_inlay_hints = true
+if vim.fn.has("nvim-0.10.0") == 1 then
+  enabled_inlay_hints = false
+end
+
 return {
   {
     "williamboman/mason.nvim",
@@ -23,18 +28,23 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
+      local on_attach = function(_, bufnr)
+        require("tailwindcss-colors").buf_attach(bufnr)
+      end
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
       lspconfig.tsserver.setup({
         capabilities = capabilities,
-        -- on_attach = on_attach,
+        on_attach = on_attach,
       })
       lspconfig.html.setup({
         capabilities = capabilities,
+        on_attach = on_attach,
       })
       lspconfig.tailwindcss.setup({
         capabilities = capabilities,
+        on_attach = on_attach,
       })
       lspconfig.jsonls.setup({
         capabilities = capabilities,
@@ -47,6 +57,7 @@ return {
         { desc = "Goto Definition" })
       vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "References" })
       vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
+      vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
       vim.keymap.set("n", "<leader>cA",
         function()
           vim.lsp.buf.code_action({
@@ -134,4 +145,41 @@ return {
       { "nvim-treesitter/nvim-treesitter" },
     },
   },
+  {
+    "lvimuser/lsp-inlayhints.nvim",
+    ft = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescriptreact", "svelte" },
+    enabled = enabled_inlay_hints,
+    opts = {
+      debug_mode = true,
+    },
+    config = function(_, options)
+      vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = "LspAttach_inlayhints",
+        callback = function(args)
+          if not (args.data and args.data.client_id) then
+            return
+          end
+
+          local bufnr = args.buf
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          require("lsp-inlayhints").on_attach(client, bufnr)
+        end,
+      })
+      require("lsp-inlayhints").setup(options)
+      -- define key map for toggle inlay hints: require('lsp-inlayhints').toggle()
+      vim.api.nvim_set_keymap(
+        "n",
+        "<leader>uI",
+        "<cmd>lua require('lsp-inlayhints').toggle()<CR>",
+        { noremap = true, silent = true }
+      )
+    end,
+  },
+  {
+    "themaxmarchuk/tailwindcss-colors.nvim",
+    config = function()
+      require("tailwindcss-colors").setup()
+    end
+  }
 }

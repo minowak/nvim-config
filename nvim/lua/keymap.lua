@@ -1,7 +1,5 @@
 local map = vim.keymap.set
 
--- TODO gr, <leader>cr - rename, snippets, ufo fold, codeium, tab nine
-
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -92,3 +90,7 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+map("n", "<leader>wi", ":VimwikiIndex<CR>", { desc = "Vimwiki Index", noremap = true, silent = true })
+map("n", "<leader>tl", ":VimwikiToggleListItem<CR>",
+  { desc = "Toggle List Item [vimwiki]", noremap = true, silent = true })

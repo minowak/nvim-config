@@ -98,4 +98,21 @@ return {
     dependencies = "anuvyklack/keymap-amend.nvim",
     config = true,
   },
+  {
+    'vimwiki/vimwiki',
+    init = function()
+      vim.g.vimwiki_list = {
+        {
+          template_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/vimwiki/autoload/",
+          syntax = "markdown",
+          ext = ".md",
+          path = "~/personalwiki", -- does not work?=!?!?
+        },
+      }
+      vim.g.vimwiki_global_ext = 0
+    end,
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+  },
 }
