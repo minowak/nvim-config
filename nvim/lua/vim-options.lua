@@ -2,6 +2,8 @@ vim.g.mapleader = " "
 
 vim.g.autoformat = true
 
+vim.g.rooter_patterns = { '.git', 'Makefile', '*.sln', 'build/env.sh' }
+
 local opt = vim.opt
 
 -- UFO folding
