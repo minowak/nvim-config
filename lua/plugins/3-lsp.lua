@@ -36,11 +36,9 @@ return {
       })
       lspconfig.tsserver.setup({
         capabilities = capabilities,
-        on_attach = on_attach,
       })
       lspconfig.html.setup({
         capabilities = capabilities,
-        on_attach = on_attach,
       })
       lspconfig.tailwindcss.setup({
         capabilities = capabilities,
@@ -69,6 +67,17 @@ return {
             },
           })
         end, { desc = "Source Action" })
+      vim.keymap.set("n", "<leader>cR",
+        function()
+          vim.lsp.buf.code_action({
+            apply = true,
+            context = {
+              only = { "source.removeUnused.ts" },
+              diagnostics = {},
+            },
+          })
+        end,
+        { desc = "Remove Unused Imports" })
     end,
     opts = {
       servers = {
@@ -138,10 +147,15 @@ return {
   {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
-    config = true,
+    config = function()
+      require('lspsaga').setup({
+        lightbulb = {
+          enable = false
+        }
+      })
+    end,
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
-      -- Please make sure you install markdown and markdown_inline parser
       { "nvim-treesitter/nvim-treesitter" },
     },
   },

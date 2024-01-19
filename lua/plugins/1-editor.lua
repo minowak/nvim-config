@@ -27,6 +27,7 @@ return {
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                  desc = "Recent" },
       { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
       { "<leader>sk", "<cmd>Telescope keymaps<cr>",                   desc = "Key Maps" },
+      { "<leader>uc", "<cmd>Telescope colorscheme<cr>",               desc = "Colorscheme" },
       {
         "<leader>ss",
         function()

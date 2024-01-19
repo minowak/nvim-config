@@ -76,7 +76,7 @@ vim.g.markdown_recommended_style = 0
 local signs = {
   Error = "",
   Warn = "",
-  Hint = "󰌶 ",
+  Hint = "󰌶",
   Info = "",
 }
 
@@ -85,9 +85,6 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- TMUX Navigator
--- Set g:tmux_navigator_no_mappings to 1
-vim.g.tmux_navigator_no_mappings = 2
 
 -- Define your mappings
 vim.api.nvim_set_keymap("n", "<C-h>", ":TmuxNavigateLeft<CR>", { noremap = true, silent = true })
