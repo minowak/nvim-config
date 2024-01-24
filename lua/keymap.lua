@@ -1,5 +1,9 @@
 local map = vim.keymap.set
 
+-- uppercase save/quit
+vim.api.nvim_create_user_command("Q", "quit", {})
+vim.api.nvim_create_user_command("W", "write", {})
+
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -12,11 +16,11 @@ map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 
--- Resize window using <opt> arrow keys (dont work in iterm)
-map("n", "<M-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-map("n", "<M-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-map("n", "<M-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-map("n", "<M-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+-- Resize window using <opt> arrow keys (weird symbols are cause of my keyboard)
+map("n", "Ż", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+map("n", "∆", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+map("n", "ķ", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+map("n", "ł", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Move Lines
 map("n", "<M-Down>", "<cmd>m .+1<cr>==", { desc = "Move down" })

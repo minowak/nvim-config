@@ -5,6 +5,7 @@ vim.g.autoformat = true
 vim.g.rooter_patterns = { '.git', 'Makefile', '*.sln', 'build/env.sh' }
 
 local opt = vim.opt
+vim.o.nohidden = true
 
 -- UFO folding
 vim.o.foldcolumn = "1" -- '0' is not bad
