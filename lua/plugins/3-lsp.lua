@@ -164,7 +164,7 @@ return {
   },
   {
     "lvimuser/lsp-inlayhints.nvim",
-    ft = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescriptreact", "svelte" },
+    ft = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescriptreact", "svelte", "lua" },
     enabled = enabled_inlay_hints,
     opts = {
       debug_mode = true,
@@ -189,7 +189,7 @@ return {
         "n",
         "<leader>uI",
         "<cmd>lua require('lsp-inlayhints').toggle()<CR>",
-        { noremap = true, silent = true }
+        { noremap = true, silent = true, desc = "Toggle Inlay Hints" }
       )
     end,
   },

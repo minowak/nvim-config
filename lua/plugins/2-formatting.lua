@@ -5,11 +5,18 @@ return {
     build = ":TSUpdate",
     config = function()
       local config = require("nvim-treesitter.configs")
+      local context = require("treesitter-context")
       config.setup({
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
       })
+      vim.keymap.set("n", "<leader>ut", function()
+        context.toggle()
+      end, { desc = "Toggle context" })
+      vim.keymap.set("n", "[c", function()
+        context.go_to_context(vim.v.count1)
+      end, { silent = true, desc = "Go to context" })
     end,
   },
   {

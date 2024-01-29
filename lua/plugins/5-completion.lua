@@ -34,21 +34,6 @@ return {
           end, { expr = true })
         end,
       },
-      {
-        "tzachar/cmp-tabnine",
-        build = {
-          ":CmpTabnineHub",
-        },
-        dependencies = "hrsh7th/nvim-cmp",
-        opts = {
-          max_lines = 1000,
-          max_num_results = 3,
-          sort = true,
-        },
-        config = function(_, opts)
-          require("cmp_tabnine.config"):setup(opts)
-        end,
-      },
     },
     config = function()
       local cmp = require("cmp")
@@ -84,8 +69,7 @@ return {
           end,
         }),
         sources = cmp.config.sources({
-          { name = "codeium",     group_index = 1, priority = 100 },
-          { name = "cmp_tabnine", group_index = 1, priority = 100 },
+          { name = "codeium", group_index = 1, priority = 100 },
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
@@ -98,7 +82,6 @@ return {
             ellipsis_char = "...",
             symbol_map = {
               Codeium = "",
-              TabNine = "",
               Text = "󰉿",
               Method = "󰆧",
               Function = "󰊕",
@@ -136,21 +119,6 @@ return {
     --     return require("tailwindcss-colorizer-cmp").formatter(entry, item)
     --   end
     -- end,
-  },
-  {
-    "tzachar/cmp-tabnine",
-    build = {
-      ":CmpTabnineHub",
-    },
-    dependencies = "hrsh7th/nvim-cmp",
-    opts = {
-      max_lines = 1000,
-      max_num_results = 3,
-      sort = true,
-    },
-    config = function(_, opts)
-      require("cmp_tabnine.config"):setup(opts)
-    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
