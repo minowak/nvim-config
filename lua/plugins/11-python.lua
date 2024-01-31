@@ -1,7 +1,7 @@
 return {
   {
     "linux-cultist/venv-selector.nvim",
-    dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
+    dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim' },
     cmd = "VenvSelect",
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {

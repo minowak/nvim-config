@@ -4,6 +4,13 @@ vim.g.autoformat = true
 
 vim.g.rooter_patterns = { '.git', 'Makefile', '*.sln', 'build/env.sh' }
 
+-- Debugging
+vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#f7768e' })
+vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#9ece6a' })
+vim.api.nvim_set_hl(0, 'DapStoppedLine', { ctermbg = 0, bg = '#9ece6a' })
+vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint', linehl = '', numhl = '' })
+vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStopped', linehl = 'DapStoppedLine', numhl = '' })
+
 local opt = vim.opt
 vim.o.nohidden = true
 

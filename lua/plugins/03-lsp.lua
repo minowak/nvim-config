@@ -50,6 +50,10 @@ return {
       lspconfig.pyright.setup({
         capabilities = capabilities,
       })
+      lspconfig.metals.setup({
+        capabilities = capabilities,
+      })
+      vim.keymap.set("n", "<leader>cc", vim.lsp.codelens.run, { desc = "Code Lens" })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
