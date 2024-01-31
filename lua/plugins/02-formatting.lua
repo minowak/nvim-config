@@ -41,6 +41,7 @@ return {
           ["markdown.mdx"] = { "prettier" },
           ["graphql"] = { "prettier" },
           ["handlebars"] = { "prettier" },
+          ["python"] = { "black" },
         },
         format_on_save = {
           timeout_ms = 500,
