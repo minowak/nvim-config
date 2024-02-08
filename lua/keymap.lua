@@ -1,8 +1,12 @@
 local map = vim.keymap.set
 
--- uppercase save/quit
+-- better save/quit
 vim.api.nvim_create_user_command("Q", "quit", {})
 vim.api.nvim_create_user_command("W", "write", {})
+
+-- Treesitter highlight
+map("n", "<leader>uT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end,
+  { desc = "Toggle Treesitter Highlight" })
 
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

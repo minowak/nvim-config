@@ -12,7 +12,6 @@ vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint', li
 vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStopped', linehl = 'DapStoppedLine', numhl = '' })
 
 local opt = vim.opt
-vim.o.nohidden = true
 
 -- UFO folding
 vim.o.foldcolumn = "1" -- '0' is not bad
