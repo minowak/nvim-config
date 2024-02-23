@@ -4,6 +4,10 @@ local map = vim.keymap.set
 vim.api.nvim_create_user_command("Q", "quit", {})
 vim.api.nvim_create_user_command("W", "write", {})
 
+-- copy to clipboard
+map({ "v", "n" }, "<leader>y", "\"+y", { silent = true })
+map("n", "<leader>yy", "\"+yy", { silent = true })
+
 -- Treesitter highlight
 map("n", "<leader>uT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end,
   { desc = "Toggle Treesitter Highlight" })

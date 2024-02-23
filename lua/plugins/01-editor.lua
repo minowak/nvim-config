@@ -378,5 +378,5 @@ return {
         end
       })
     end
-  }
+  },
 }

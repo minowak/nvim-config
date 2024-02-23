@@ -1,4 +1,4 @@
-local enabled_inlay_hints = true
+local enabled_inlay_hints = false
 if vim.fn.has("nvim-0.10.0") == 1 then
   enabled_inlay_hints = false
 end
@@ -19,7 +19,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "tsserver", "html", "jsonls", "tailwindcss", "pyright" },
+        ensure_installed = { "lua_ls", "tsserver", "html", "jsonls", "tailwindcss", "pyright", "gopls" },
       })
     end,
   },
@@ -31,6 +31,9 @@ return {
       local on_attach = function(_, bufnr)
         require("tailwindcss-colors").buf_attach(bufnr)
       end
+      lspconfig.gopls.setup({
+        capabilities = capabilities,
+      })
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
