@@ -4,6 +4,24 @@ vim.g.autoformat = true
 
 vim.g.rooter_patterns = { '.git', 'Makefile', '*.sln', 'build/env.sh' }
 
+-- Float borders
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = "rounded"
+  }
+)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = "rounded"
+  }
+)
+vim.diagnostic.config {
+  float = { border = "rounded" }
+}
+require('lspconfig.ui.windows').default_options = {
+  border = "rounded"
+}
+
 -- Debugging
 vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#f7768e' })
 vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#9ece6a' })

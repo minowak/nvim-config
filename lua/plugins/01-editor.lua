@@ -169,7 +169,7 @@ return {
         ["<leader>x"] = { name = "+diagnostics/quickfix" },
       },
       window = {
-        border = "single",
+        border = "rounded",
       },
     },
     config = function(_, opts)
