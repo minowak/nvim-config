@@ -2,6 +2,15 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("szakal_" .. name, { clear = true })
 end
 
+-- Detach UFO folds in neotree
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "neo-tree" },
+  callback = function()
+    require("ufo").detach()
+    vim.opt_local.foldenable = false
+  end
+})
+
 -- Auto update plugins
 vim.api.nvim_create_autocmd("VimEnter", {
   group = augroup("autoupdate"),

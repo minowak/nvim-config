@@ -28,17 +28,24 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
+      local handlers = {
+        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+      }
       local on_attach = function(_, bufnr)
         require("tailwindcss-colors").buf_attach(bufnr)
       end
       lspconfig.gopls.setup({
         capabilities = capabilities,
+        handlers = handlers
       })
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
+        handlers = handlers
       })
       lspconfig.tsserver.setup({
         capabilities = capabilities,
+        handlers = handlers,
         settings = {
           typescript = {
             inlayHints = {
@@ -68,19 +75,24 @@ return {
       })
       lspconfig.html.setup({
         capabilities = capabilities,
+        handlers = handlers
       })
       lspconfig.tailwindcss.setup({
         capabilities = capabilities,
+        handlers = handlers,
         on_attach = on_attach,
       })
       lspconfig.jsonls.setup({
         capabilities = capabilities,
+        handlers = handlers
       })
       lspconfig.pyright.setup({
         capabilities = capabilities,
+        handlers = handlers
       })
       lspconfig.metals.setup({
         capabilities = capabilities,
+        handlers = handlers
       })
       vim.keymap.set("n", "<leader>cc", vim.lsp.codelens.run, { desc = "Code Lens" })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
@@ -90,7 +102,7 @@ return {
       vim.keymap.set("n", "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end,
         { desc = "Goto Definition" })
       vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "References" })
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
+      vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { desc = "Goto Type Definition" })
       vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
       vim.keymap.set("n", "<leader>cA",
         function()
