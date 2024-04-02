@@ -2,7 +2,8 @@ return {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
-      "rcarriga/nvim-dap-ui"
+      "rcarriga/nvim-dap-ui",
+      "nvim-neotest/nvim-nio"
     },
     config = function(self, opts)
       -- Debug settings if you're using nvim-dap
