@@ -31,7 +31,7 @@ return {
       dashboard.button("f", "  Find file", ":cd $HOME/Projects| Telescope find_files<CR>"),
       dashboard.button("s", "  Recent session", function() require("persistence").load({ last = true }) end),
       dashboard.button("r", "  Recent", ":Telescope oldfiles<CR>"),
-      dashboard.button("c", "  Config", ":e ~/.config/nvim/init.lua<CR> | :Neotree toggle<CR>"),
+      dashboard.button("c", "  Config", ":e ~/.config/nvim/init.lua<CR>"),
       -- dashboard.button("u", "  CURL", ":CurlOpen<CR> | :Neotree toggle<CR>"),
       dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
     }

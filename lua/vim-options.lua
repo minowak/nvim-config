@@ -1,5 +1,9 @@
 vim.g.mapleader = " "
 
+-- Disable netrw
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+
 vim.g.autoformat = true
 
 vim.g.rooter_patterns = { '.git', 'Makefile', '*.sln', 'build/env.sh' }
