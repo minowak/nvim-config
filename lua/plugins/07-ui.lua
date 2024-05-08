@@ -1,5 +1,5 @@
 return {
-  { "MunifTanjim/nui.nvim",        lazy = true },
+  { "MunifTanjim/nui.nvim", lazy = true },
   {
     "rcarriga/nvim-notify",
     keys = {
@@ -206,8 +206,24 @@ return {
       },
     },
   },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "MunifTanjim/nui.nvim",        lazy = true },
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
+    config = function()
+      local devicons = require('nvim-web-devicons')
+      devicons.setup({
+        override = {
+          http = {
+            icon = "",
+            color = "#428890",
+            cterm_color = "65",
+            name = "HTTP"
+          }
+        }
+      })
+    end
+  },
+  { "MunifTanjim/nui.nvim", lazy = true },
   {
     "echasnovski/mini.hipatterns",
     event = "VeryLazy",
