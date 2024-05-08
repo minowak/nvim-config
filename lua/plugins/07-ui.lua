@@ -67,6 +67,7 @@ return {
           right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
           diagnostics = "nvim_lsp",
           always_show_bufferline = false,
+          auto_toggle_bufferline = true,
           separator_style = "slant",
           offsets = {
             {
@@ -76,6 +77,11 @@ return {
               text_align = "left",
             },
           },
+          custom_filter = function(buf_number, buf_numbers)
+            if vim.bo[buf_number].filetype ~= "httpResult" then
+              return true
+            end
+          end,
           groups = {
             items = {
               require('bufferline.groups').builtin.pinned:with({
@@ -143,10 +149,11 @@ return {
         },
       },
       presets = {
-        bottom_search = true,
+        bottom_search = false,
         command_palette = true,
         long_message_to_split = true,
         inc_rename = true,
+        lsp_doc_border = true,
       },
     },
     -- stylua: ignore

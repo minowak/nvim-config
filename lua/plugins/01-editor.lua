@@ -142,6 +142,13 @@ return {
               color = { fg = "#ff9e64" },
             }
           },
+          lualine_y = {
+            {
+              "rest",
+              icon = "",
+              fg = "#428890"
+            }
+          }
         },
       })
     end,
@@ -379,5 +386,5 @@ return {
         end
       })
     end
-  },
+  }
 }
