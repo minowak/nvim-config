@@ -118,5 +118,8 @@ return {
   },
   {
     "airblade/vim-rooter"
+  },
+  {
+    'edluffy/hologram.nvim'
   }
 }

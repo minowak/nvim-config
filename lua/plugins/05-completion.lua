@@ -14,7 +14,7 @@ return {
         "Exafunction/codeium.vim",
         event = 'BufEnter',
         cmd = "Codeium",
-        build = ":Codeium Auth",
+        -- build = ":Codeium Auth",
         dependencies = {
           "nvim-lua/plenary.nvim",
           "hrsh7th/nvim-cmp",
