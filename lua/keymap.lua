@@ -1,5 +1,8 @@
 local map = vim.keymap.set
 
+-- alpha dashboard
+map("n", "<leader>;", "<cmd>Alpha<cr>", { desc = "Dashboard" })
+
 -- better save/quit
 vim.api.nvim_create_user_command("Q", "quit", {})
 vim.api.nvim_create_user_command("W", "write", {})

@@ -14,8 +14,5 @@ return {
       })
     end,
     keys = { { "<leader>vs", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
-  },
-  {
-    'dccsillag/magma-nvim'
   }
 }
