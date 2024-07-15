@@ -1,16 +1,7 @@
 vim.g.mapleader = " "
 
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>ns",
-  "<cmd>lua require('package-info').show({ force = true })<cr>",
-  { silent = true, noremap = true }
-)
-
--- Molten (Notebook)
--- I find auto open annoying, keep in mind setting this option will require setting
--- a keybind for `:noautocmd MoltenEnterOutput` to open the output again
-vim.g.molten_auto_open_output = false
+-- Rainbow CSV
+vim.g.disable_rainbow_hover = 1
 
 -- this guide will be using image.nvim
 -- Don't forget to setup and install the plugin if you want to view image outputs

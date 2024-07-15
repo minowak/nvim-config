@@ -11,5 +11,5 @@ return {
   { 'kepano/flexoki-neovim', name = 'flexoki' },
   { 'dracula/vim',           name = 'dracula' },
   { "rebelot/kanagawa.nvim" },
-  { "catppuccin/nvim",       name = "catppuccin", priority = 1000 }
+  { "catppuccin/nvim",       name = "catppuccin", priority = 1000 },
 }
