@@ -180,7 +180,7 @@ return {
         { "g",             group = "goto" },
         { "gs",            group = "surround" },
         { "<leader>d",     group = "debug" },
-        { "<leader>t",     group = "wiki toggle" },
+        { "<leader>t",     group = "tests" },
         { "<leader>v",     group = "virtual env" }
       },
     },
