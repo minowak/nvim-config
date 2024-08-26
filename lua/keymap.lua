@@ -107,5 +107,5 @@ map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 map("n", "<leader>wi", ":VimwikiIndex<CR>", { desc = "Vimwiki Index", noremap = true, silent = true })
-map("n", "<leader>tl", ":VimwikiToggleListItem<CR>",
+map({ "n", "v" }, "<leader>tl", ":VimwikiToggleListItem<CR>",
   { desc = "Toggle List Item [vimwiki]", noremap = true, silent = true })
