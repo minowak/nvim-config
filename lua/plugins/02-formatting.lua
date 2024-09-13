@@ -43,8 +43,9 @@ return {
           ["handlebars"] = { "prettier" },
           ["python"] = { "black" },
         },
-        format_on_save = {
-          timeout_ms = 500,
+        format_after_save = {
+          async = true,
+          -- timeout_ms = 1500,
           lsp_fallback = true,
         },
       })
