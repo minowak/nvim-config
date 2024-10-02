@@ -19,7 +19,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "html", "jsonls", "tailwindcss", "pylsp", "gopls" },
+        ensure_installed = { "lua_ls", "ts_ls", "html", "jsonls", "tailwindcss", "pylsp" },
       })
     end,
   },
@@ -35,10 +35,6 @@ return {
       local on_attach = function(_, bufnr)
         require("tailwindcss-colors").buf_attach(bufnr)
       end
-      lspconfig.gopls.setup({
-        capabilities = capabilities,
-        handlers = handlers,
-      })
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
         handlers = handlers,
