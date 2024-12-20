@@ -2,9 +2,6 @@ vim.g.mapleader = " "
 
 -- Rainbow CSV
 vim.g.disable_rainbow_hover = 1
-
--- this guide will be using image.nvim
--- Don't forget to setup and install the plugin if you want to view image outputs
 vim.g.molten_image_provider = "image.nvim"
 
 -- optional, I like wrapping. works for virt text and the output window
