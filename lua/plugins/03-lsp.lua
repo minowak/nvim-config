@@ -90,6 +90,10 @@ return {
         capabilities = capabilities,
         handlers = handlers,
       })
+      lspconfig.gopls.setup({
+        capabilities = capabilities,
+        handlers = handlers,
+      })
       vim.keymap.set("n", "<leader>cc", vim.lsp.codelens.run, { desc = "Code Lens" })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
