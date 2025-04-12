@@ -25,10 +25,8 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "nvim-java/nvim-java" },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local java = require("java").setup()
       local lspconfig = require("lspconfig")
       local handlers = {
         ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
