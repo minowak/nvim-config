@@ -12,10 +12,14 @@ return {
   },
   {
     "gbprod/yanky.nvim",
+    enabled = false,
     dependencies = { { "kkharji/sqlite.lua" } },
     opts = {
       highlight = { timer = 250 },
       ring = { storage = "sqlite" },
+      preserve_cursor_position = {
+        enabled = false,
+      },
     },
     keys = {
       -- stylua: ignore
