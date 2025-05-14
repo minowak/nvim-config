@@ -41,7 +41,7 @@ return {
           ["markdown.mdx"] = { "prettier" },
           ["graphql"] = { "prettier" },
           ["handlebars"] = { "prettier" },
-          ["python"] = { "black" },
+          ["python"] = { "ruff" },
         },
         format_after_save = {
           async = true,

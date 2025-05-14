@@ -19,16 +19,14 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "html", "jsonls", "tailwindcss", "pylsp" },
+        ensure_installed = { "lua_ls", "ts_ls", "html", "jsonls", "tailwindcss", "pylsp", "ruff" },
       })
     end,
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "nvim-java/nvim-java" },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local java = require("java").setup()
       local lspconfig = require("lspconfig")
       local handlers = {
         ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
@@ -37,7 +35,10 @@ return {
       local on_attach = function(_, bufnr)
         require("tailwindcss-colors").buf_attach(bufnr)
       end
-      lspconfig.jdtls.setup({})
+      lspconfig.ruff.setup({
+        capabilities = capabilities,
+        handlers = handlers,
+      })
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
         handlers = handlers,
