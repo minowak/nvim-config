@@ -1,3 +1,11 @@
+-- Automatically set filetype to markdown for vimwiki files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "vimwiki",
+  callback = function()
+    vim.bo.filetype = "markdown"
+  end,
+})
+
 local function augroup(name)
   return vim.api.nvim_create_augroup("szakal_" .. name, { clear = true })
 end
