@@ -16,14 +16,6 @@ return {
     },
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "html", "jsonls", "tailwindcss", "pylsp" },
-      })
-    end,
-  },
-  {
     "neovim/nvim-lspconfig",
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -171,10 +163,12 @@ return {
 
       null_ls.setup({
         sources = {
+          require("none-ls.diagnostics.eslint_d"),
+          require("none-ls.code_actions.eslint_d"),
+          require("none-ls.formatting.eslint_d"),
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettier,
           null_ls.builtins.formatting.autopep8,
-          null_ls.builtins.diagnostics.eslint,
           null_ls.builtins.diagnostics.flake8,
           null_ls.builtins.completion.spell,
         },
