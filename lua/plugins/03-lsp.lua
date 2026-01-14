@@ -19,15 +19,16 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "html", "jsonls", "tailwindcss", "pylsp", "ruff" },
+        ensure_installed = { "lua_ls", "ts_ls", "html", "jsonls", "tailwindcss", "pylsp", "ruff", "eslint" },
       })
     end,
   },
+  { "qvalentin/helm-ls.nvim", ft = "helm" },
   {
     "neovim/nvim-lspconfig",
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local lspconfig = require("lspconfig")
+      local lspconfig = vim.lsp.config
       local handlers = {
         ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
         ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
@@ -35,17 +36,27 @@ return {
       local on_attach = function(_, bufnr)
         require("tailwindcss-colors").buf_attach(bufnr)
       end
-      lspconfig.ruff.setup({
+      lspconfig("helm_ls", {
+        settings = {
+          ['helm-ls'] = {
+            yamlls = {
+              path = "yaml-language-server",
+            }
+          }
+        }
+      })
+      lspconfig("ruff", {
         capabilities = capabilities,
         handlers = handlers,
       })
-      lspconfig.lua_ls.setup({
+      lspconfig("lua_ls", {
         capabilities = capabilities,
         handlers = handlers,
       })
-      lspconfig.ts_ls.setup({
+      lspconfig("ts_ls", {
         capabilities = capabilities,
         handlers = handlers,
+        root_dir = vim.fs.dirname(vim.fs.find({ "tsconfig.json", ".git", "package.json" }, { upward = true })[1]),
         settings = {
           typescript = {
             inlayHints = {
@@ -73,30 +84,37 @@ return {
           },
         },
       })
-      lspconfig.html.setup({
+      lspconfig("html", {
         capabilities = capabilities,
         handlers = handlers,
       })
-      lspconfig.tailwindcss.setup({
+      lspconfig("tailwindcss", {
         capabilities = capabilities,
         handlers = handlers,
         on_attach = on_attach,
       })
-      lspconfig.jsonls.setup({
+      lspconfig("jsonls", {
         capabilities = capabilities,
         handlers = handlers,
       })
-      lspconfig.pylsp.setup({
+      lspconfig("pylsp", {
         capabilities = capabilities,
         handlers = handlers,
       })
-      lspconfig.metals.setup({
+      lspconfig("gopls", {
         capabilities = capabilities,
         handlers = handlers,
       })
-      lspconfig.gopls.setup({
+      lspconfig("arduino_language_server", {
         capabilities = capabilities,
         handlers = handlers,
+        filetypes = { "arduino" },
+        cmd = {
+          "arduino-language-server",
+          "--cli-config", vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
+          "--clangd", "clangd",
+          "--fqbn", "arduino:avr:uno"
+        },
       })
       vim.keymap.set("n", "<leader>cc", vim.lsp.codelens.run, { desc = "Code Lens" })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
@@ -251,12 +269,5 @@ return {
     config = function()
       require("lsp-file-operations").setup()
     end,
-  },
-  {
-    'simrat39/rust-tools.nvim',
-    event = "VeryLazy",
-    config = function()
-      require('rust-tools').setup {}
-    end
   }
 }

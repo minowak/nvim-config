@@ -1,5 +1,18 @@
 local map = vim.keymap.set
 
+-- diff
+-- Jump between diff hunks
+map('n', ']c', ']c', { noremap = true, silent = true })
+map('n', '[c', '[c', { noremap = true, silent = true })
+
+-- Pull from other window / push to other window
+local opts = { buffer = 0, silent = true }
+map('n', '<leader>go', function() vim.cmd('diffget') end, opts)
+map('n', '<leader>gp', function() vim.cmd('diffput') end, opts)
+
+-- Open all folds quickly
+map('n', '<leader>zo', 'zR', { noremap = true, silent = true })
+
 -- alpha dashboard
 map("n", "<leader>;", "<cmd>Alpha<cr>", { desc = "Dashboard" })
 

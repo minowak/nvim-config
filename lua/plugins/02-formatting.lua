@@ -14,9 +14,6 @@ return {
       vim.keymap.set("n", "<leader>ut", function()
         context.toggle()
       end, { desc = "Toggle context" })
-      vim.keymap.set("n", "[c", function()
-        context.go_to_context(vim.v.count1)
-      end, { silent = true, desc = "Go to context" })
     end,
   },
   {
